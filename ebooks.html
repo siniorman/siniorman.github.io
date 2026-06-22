@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Ebook Vault | Senior Man Digital</title>
+<meta name="description" content="Get both free ebooks — How to Become a Millionaire in 6 Months, and Secure Your Online Income.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #0A0E17; --bg-raised: #10151F; --border: #1E2733; --border-soft: #2A3441;
+    --white: #FFFFFF; --muted: #9CA3AF; --muted-dim: #6B7280;
+    --gold: #D4A65A; --gold-soft: #E8C994;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; background: var(--bg); color: var(--white);
+    font-family: 'Inter', sans-serif; display: flex; flex-direction: column;
+    align-items: center; padding: 28px 20px 60px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 36px; }
+  .brand img { width: 26px; height: 26px; border-radius: 6px; object-fit: cover; }
+  .brand span { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; letter-spacing: 0.2em; color: #FFFFFFE6; }
+  .wrap { width: 100%; max-width: 460px; text-align: center; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: 0.7rem; color: var(--gold); border: 1px solid var(--border-soft);
+    border-radius: 999px; padding: 6px 14px; display: inline-block; margin-bottom: 18px;
+  }
+  h1 { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; margin: 0 0 12px; }
+  p.sub { color: var(--muted); line-height: 1.6; margin: 0 0 28px; }
+  .card {
+    background: var(--bg-raised); border: 1px solid var(--border); border-radius: 0.85rem;
+    padding: 28px 24px; text-align: left;
+  }
+  .field-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 8px;
+  }
+  .field-input {
+    width: 100%; background: #0D1320; border: 1px solid var(--border); border-radius: 0.5rem;
+    padding: 0.75rem 0.9rem; color: var(--white); font-family: 'Inter', sans-serif;
+    font-size: 0.95rem; margin-bottom: 18px;
+  }
+  .field-input:focus { border-color: var(--gold); outline: none; }
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 0.95rem;
+    padding: 0.85rem 1.4rem; border-radius: 0.5rem; cursor: pointer; text-decoration: none;
+    transition: transform 200ms ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: linear-gradient(180deg, var(--gold-soft), var(--gold)); color: #0A0E17; border: 1px solid var(--gold); }
+  .btn-outline { background: transparent; color: var(--gold-soft); border: 1px solid var(--border-soft); }
+  .consent { font-size: 0.78rem; color: var(--muted-dim); margin-top: -6px; margin-bottom: 18px; line-height: 1.5; }
+  .hidden { display: none; }
+  .step { display: flex; gap: 12px; align-items: flex-start; text-align: left; margin-bottom: 22px; }
+  .step .num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--gold);
+    border: 1px solid var(--border-soft); border-radius: 999px; width: 1.6rem; height: 1.6rem;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+  }
+  .step h3 { font-family: 'Space Grotesk', sans-serif; font-size: 0.98rem; margin: 0 0 4px; }
+  .step p { color: var(--muted); font-size: 0.88rem; margin: 0; line-height: 1.5; }
+  .ebook-row { display: flex; gap: 12px; margin: 10px 0 22px; }
+  .ebook-row > div { flex: 1; }
+  .ebook-row img {
+    width: 100%; aspect-ratio: 3/4; object-fit: contain; background: #0D1320;
+    border: 1px solid var(--border); border-radius: 0.5rem; opacity: 0.85;
+  }
+  .back { margin-top: 32px; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--muted-dim); text-decoration: none; }
+  .back:hover { color: var(--gold-soft); }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="brand">
+  <img src="assets/icon.png" alt="">
+  <span>SENIOR&nbsp;MAN</span>
+</a>
+
+<div class="wrap">
+
+  <span class="eyebrow">Free Ebook Vault</span>
+  <h1>📂 Two Free Ebooks</h1>
+  <p class="sub">"How to Become a Millionaire in 6 Months" and "Secure Your Online Income" — fill this in once and unlock both.</p>
+
+  <!-- ============== GATE FORM ============== -->
+  <form id="vaultForm" class="card">
+    <label class="field-label" for="name">Full Name</label>
+    <input id="name" class="field-input" type="text" placeholder="e.g. Alabi Kunle" required>
+
+    <label class="field-label" for="phone">WhatsApp Number</label>
+    <input id="phone" class="field-input" type="tel" placeholder="+234..." required>
+
+    <label class="field-label" for="email">Email</label>
+    <input id="email" class="field-input" type="email" placeholder="you@email.com" required>
+
+    <p class="consent">By submitting, you agree to receive your ebooks and occasional updates from Senior Man Digital via WhatsApp.</p>
+
+    <button type="submit" id="submitBtn" class="btn btn-primary">📂 Unlock My Free Ebooks</button>
+  </form>
+
+  <!-- ============== UNLOCKED PANEL ============== -->
+  <div id="unlocked" class="card hidden">
+
+    <div class="step">
+      <span class="num">1</span>
+      <div>
+        <h3>📲 Save my number</h3>
+        <p>Save +234 703 726 1934 so my WhatsApp Status shows up for you — that's where I drop new tips, builds, and offers first.</p>
+      </div>
+    </div>
+    <a href="#" id="saveContactBtn" class="btn btn-outline" style="margin-bottom:22px;">📲 Save My Number</a>
+
+    <div class="step">
+      <span class="num">2</span>
+      <div>
+        <h3>📘 Get your ebooks</h3>
+        <p>Watch my WhatsApp Status — I post the download links there. Don't want to wait? Message me directly and I'll send them to you myself.</p>
+      </div>
+    </div>
+    <div class="ebook-row" style="pointer-events:none;">
+      <div>
+        <img src="assets/ebook-millionaire.png" alt="How to Become a Millionaire in 6 Months">
+      </div>
+      <div>
+        <img src="assets/ebook-secure-income.png" alt="Secure Your Online Income">
+      </div>
+    </div>
+    <a href="#" id="whatsappBtn" class="btn btn-outline" style="margin-bottom:22px;">💬 Message Me For My Ebooks</a>
+
+    <div class="step" style="margin-bottom:14px;">
+      <span class="num">3</span>
+      <div>
+        <h3>📢 Join the Telegram channel</h3>
+        <p>Daily drops, announcements, and first access to new offers.</p>
+      </div>
+    </div>
+    <a href="https://t.me/seniorman04" target="_blank" rel="noopener" class="btn btn-primary">📢 Join Telegram</a>
+  </div>
+
+  <a href="index.html" class="back">← Back to Senior Man Digital</a>
+</div>
+
+<script>
+// PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL HERE
+const APPS_SCRIPT_URL = "YOUR_DEPLOYED_APPS_SCRIPT_URL_HERE";
+const WHATSAPP_NUMBER = "2347037261934";
+
+document.getElementById('vaultForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.textContent = '⚡ Unlocking...';
+  submitBtn.disabled = true;
+
+  // Best-effort log to Sheet + Contacts. We don't block the unlock on this —
+  // mode:'no-cors' means we can't read success/failure anyway, and a backend
+  // hiccup shouldn't cost someone their free ebook.
+  try {
+    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== "YOUR_DEPLOYED_APPS_SCRIPT_URL_HERE") {
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, email }),
+      });
+    }
+  } catch (err) {
+    console.log('Lead logging failed silently:', err);
+  }
+
+  // Build a one-tap "save contact" vCard link.
+  const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Senior Man Digital\nTEL;TYPE=CELL:+${WHATSAPP_NUMBER}\nEND:VCARD`;
+  document.getElementById('saveContactBtn').href = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
+  document.getElementById('saveContactBtn').setAttribute('download', 'senior-man-digital.vcf');
+
+  const waMsg = encodeURIComponent(`Hi Senior Man, I just saved your number — I'm ${name}. Please send me the download links for my free ebooks.`);
+  document.getElementById('whatsappBtn').href = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
+
+  document.getElementById('vaultForm').classList.add('hidden');
+  document.getElementById('unlocked').classList.remove('hidden');
+});
+</script>
+</body>
+</html>

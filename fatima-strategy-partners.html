@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fatima Strategy Partners — Consulting for Impact</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------- RESET & BASE ---------- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0b1a2f;
+            --navy-light: #1a2f4a;
+            --gold: #c9a84c;
+            --gold-light: #e8d5a3;
+            --gold-glow: rgba(201, 168, 76, 0.25);
+            --cream: #f9f7f2;
+            --white: #ffffff;
+            --gray-100: #f3f1ec;
+            --gray-200: #e8e4db;
+            --gray-300: #cdc6b8;
+            --gray-600: #6b6560;
+            --gray-800: #2d2a26;
+            --shadow-sm: 0 4px 20px rgba(11, 26, 47, 0.06);
+            --shadow-md: 0 12px 48px rgba(11, 26, 47, 0.10);
+            --shadow-lg: 0 24px 72px rgba(11, 26, 47, 0.16);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--cream);
+            color: var(--gray-800);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ---------- BUTTONS ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.01em;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            box-shadow: 0 4px 16px rgba(201, 168, 76, 0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(201, 168, 76, 0.45);
+            background: #dbb95a;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-light {
+            border: 2px solid rgba(255, 255, 255, 0.35);
+            color: var(--white);
+        }
+        .btn-outline-light:hover {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-2px);
+        }
+
+        .btn-gold-light {
+            background: var(--gold-light);
+            color: var(--navy);
+        }
+        .btn-gold-light:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-arrow::after {
+            content: '→';
+            transition: transform 0.3s ease;
+            display: inline-block;
+            font-size: 1.2rem;
+        }
+        .btn-arrow:hover::after {
+            transform: translateX(6px);
+        }
+
+        /* ---------- NAVIGATION ---------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(11, 26, 47, 0.94);
+            backdrop-filter: blur(16px);
+            padding: 12px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--navy);
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--white);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--navy) !important;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 600;
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .nav-cta:hover {
+            background: #dbb95a !important;
+            color: var(--navy) !important;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--white);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--navy);
+            position: relative;
+            overflow: hidden;
+            padding: 140px 0 100px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 60% at 10% 80%, rgba(201, 168, 76, 0.10) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 50% at 90% 20%, rgba(201, 168, 76, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            padding: 8px 20px 8px 16px;
+            border-radius: 60px;
+            color: var(--gold-light);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            letter-spacing: 0.02em;
+        }
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+            font-weight: 800;
+            line-height: 1.08;
+            color: var(--white);
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+        .hero h1 .highlight {
+            color: var(--gold);
+            position: relative;
+        }
+        .hero h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(201, 168, 76, 0.3);
+            border-radius: 4px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 520px;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .hero-stats .stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-stats .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+        .hero-stats .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-card .quote-mark {
+            font-size: 3rem;
+            color: var(--gold);
+            opacity: 0.4;
+            line-height: 1;
+            margin-bottom: -8px;
+        }
+
+        .hero-card blockquote {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .hero-card .attribution {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .hero-card .attribution .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1rem;
+        }
+        .hero-card .attribution .name {
+            color: var(--white);
+            font-weight: 600;
+        }
+        .hero-card .attribution .title {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+        .orb-1 {
+            width: 280px;
+            height: 280px;
+            background: rgba(201, 168, 76, 0.08);
+            top: -60px;
+            right: -80px;
+        }
+        .orb-2 {
+            width: 200px;
+            height: 200px;
+            background: rgba(201, 168, 76, 0.05);
+            bottom: -40px;
+            left: -60px;
+        }
+
+        /* ---------- SECTION COMMON ---------- */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .section-label::before {
+            content: '';
+            width: 28px;
+            height: 2px;
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.12;
+            margin-bottom: 20px;
+            color: var(--navy);
+        }
+
+        .section-title .highlight {
+            color: var(--gold);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            margin-bottom: 56px;
+        }
+        .section-header.centered {
+            text-align: center;
+        }
+        .section-header.centered .section-subtitle {
+            margin: 0 auto;
+        }
+
+        /* ---------- SERVICES ---------- */
+        #services {
+            background: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            box-shadow: var(--shadow-md);
+            background: var(--white);
+        }
+
+        .service-card .icon {
+            width: 56px;
+            height: 56px;
+            background: var(--gold);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 24px;
+            color: var(--navy);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--navy);
+        }
+
+        .service-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-card .learn-more {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .service-card .learn-more:hover {
+            gap: 14px;
+        }
+
+        .service-tag {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.12);
+            color: var(--gold);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 14px;
+            border-radius: 60px;
+            margin-top: 4px;
+        }
+
+        /* ---------- CASE STUDIES ---------- */
+        #case-studies {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        #case-studies .section-title {
+            color: var(--white);
+        }
+        #case-studies .section-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+        }
+        .case-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(201, 168, 76, 0.3);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25);
+        }
+
+        .case-card .case-image {
+            height: 200px;
+            background: var(--navy-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+        .case-card .case-image .case-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--gold);
+            color: var(--navy);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 6px 16px;
+            border-radius: 60px;
+        }
+
+        .case-card .case-body {
+            padding: 32px 30px;
+        }
+        .case-card .case-body .case-industry {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .case-card .case-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+        .case-card .case-body p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .case-card .case-body .case-result {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(201, 168, 76, 0.10);
+            padding: 8px 20px 8px 16px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold-light);
+        }
+
+        /* ---------- TESTIMONIALS ---------- */
+        #testimonials {
+            background: var(--white);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .testimonial-card:hover {
+            border-color: var(--gold);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold);
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--gray-800);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+        .testimonial-card .client {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .testimonial-card .client .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .testimonial-card .client .info .name {
+            font-weight: 700;
+            color: var(--navy);
+        }
+        .testimonial-card .client .info .role {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        /* ---------- THOUGHT LEADERSHIP ---------- */
+        #insights {
+            background: var(--cream);
+        }
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .insight-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            transition: var(--transition);
+            border: 1px solid var(--gray-200);
+        }
+        .insight-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--gold);
+            box-shadow: var(--shadow-md);
+        }
+
+        .insight-card .insight-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .insight-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--navy);
+        }
+        .insight-card p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .insight-card .read-more {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gold);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+        .insight-card .read-more:hover {
+            gap: 12px;
+        }
+
+        /* ---------- CTA BANNER ---------- */
+        .cta-banner {
+            background: var(--navy);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-banner .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: clamp(2rem, 3.4vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            max-width: 700px;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .cta-banner h2 span {
+            color: var(--gold);
+        }
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            max-width: 540px;
+            margin-bottom: 36px;
+            line-height: 1.7;
+        }
+        .cta-banner .cta-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: #081422;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 16px;
+        }
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .footer-col h5 {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 18px;
+            letter-spacing: 0.02em;
+        }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .footer-col ul a {
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .footer-col ul a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.85rem;
+        }
+        .footer-bottom .socials {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-bottom .socials a {
+            transition: var(--transition);
+        }
+        .footer-bottom .socials a:hover {
+            color: var(--gold);
+        }
+
+        /* ---------- FLOATING CTA (sticky) ---------- */
+        .floating-cta {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 900;
+            background: var(--gold);
+            color: var(--navy);
+            border: none;
+            padding: 16px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 8px 32px rgba(201, 168, 76, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            animation: float-bounce 3s ease-in-out infinite;
+        }
+        .floating-cta:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 44px rgba(201, 168, 76, 0.55);
+        }
+
+        @keyframes float-bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-6px);
+            }
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .hero p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-card {
+                max-width: 100%;
+            }
+            .hero-visual {
+                order: -1;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            section {
+                padding: 70px 0;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 80px 32px 40px;
+                gap: 24px;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+                align-items: flex-start;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+            .nav-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+            .nav-cta {
+                margin-top: 8px;
+            }
+
+            .hero {
+                padding: 120px 0 60px;
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+            .hero-stats {
+                gap: 28px;
+                flex-wrap: wrap;
+            }
+            .hero-stats .stat-number {
+                font-size: 1.6rem;
+            }
+
+            .services-grid,
+            .case-grid,
+            .testimonial-grid,
+            .insight-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .floating-cta {
+                bottom: 16px;
+                right: 16px;
+                padding: 14px 20px;
+                font-size: 0.85rem;
+            }
+            .floating-cta span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-card blockquote {
+                font-size: 0.95rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ---------- UTILITY ---------- */
+        .text-gold {
+            color: var(--gold);
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <header class="navbar" id="navbar" role="navigation">
+        <div class="container">
+            <a href="#" class="logo" aria-label="Fatima Strategy Partners home">
+                <span class="logo-icon">F</span>
+                Fatima<span>Strategy</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#insights">Insights</a></li>
+                <li><a href="#cta" class="nav-cta">Book a Call</a></li>
+            </ul>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="home">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="dot"></span>
+                        Trusted by Fortune 500 leaders
+                    </div>
+
+                    <h1>
+                        Strategy that <br />
+                        <span class="highlight">transforms</span> industries
+                    </h1>
+
+                    <p>
+                        Fatima Strategy Partners delivers high-impact advisory for
+                        organizations ready to lead. We combine rigorous analysis with
+                        bold vision to drive measurable, lasting results.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#cta" class="btn btn-primary btn-arrow">Book a Call</a>
+                        <a href="#services" class="btn btn-outline-light">Explore Services</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">97%</span>
+                            <span class="stat-label">Client retention</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">12+</span>
+                            <span class="stat-label">Industries served</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">$4.2B</span>
+                            <span class="stat-label">Client value created</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="quote-mark">“</div>
+                        <blockquote>
+                            Fatima Strategy Partners didn't just advise us — they
+                            reimagined our entire operating model. The results exceeded
+                            every projection.
+                        </blockquote>
+                        <div class="attribution">
+                            <div class="avatar">JD</div>
+                            <div>
+                                <div class="name">Jonathan Davies</div>
+                                <div class="title">CEO, GlobalTech Industries</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What we do</span>
+                <h2 class="section-title">
+                    Strategic advisory for the <span class="highlight">next frontier</span>
+                </h2>
+                <p class="section-subtitle">
+                    We partner with executive teams to solve complex challenges,
+                    unlock growth, and build durable competitive advantage.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">📊</div>
+                    <h3>Corporate Strategy</h3>
+                    <p>
+                        Market entry, portfolio optimization, and M&A advisory
+                        informed by deep data and sector expertise.
+                    </p>
+                    <span class="service-tag">Flagship</span>
+                    <a href="#" class="learn-more">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">⚡</div>
+                    <h3>Operational Excellence</h3>
+                    <p>
+                        End-to-end transformation, cost restructuring, and
+                        performance acceleration with measurable ROI.
+                    </p>
+                    <span class="service-tag">High impact</span>
+                    <a href="#" class="learn-more">Learn more →</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">📈</div>
+                    <h3>Digital &amp; Innovation</h3>
+                    <p>
+                        AI readiness, digital operating models, and innovation
+                        ecosystems that future-proof your organization.
+                    </p>
+                    <span class="service-tag">Forward</span>
+                    <a href="#" class="learn-more">Learn more →</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center;">
+                <a href="#cta" class="btn btn-primary btn-arrow">Book a discovery call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CASE STUDIES ========== -->
+    <section id="case-studies">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Client results</span>
+                <h2 class="section-title">
+                    <span class="highlight">Case studies</span> that speak for themselves
+                </h2>
+                <p class="section-subtitle">
+                    Real transformations, real outcomes. Here’s how we’ve helped
+                    leading organizations rewrite their trajectory.
+                </p>
+            </div>
+
+            <div class="case-grid">
+                <div class="case-card">
+                    <div class="case-image" style="background: linear-gradient(135deg, #1a2f4a, #0b1a2f);">
+                        <span style="font-size: 4rem; opacity: 0.08;">🏦</span>
+                        <span class="case-badge">+42% EBITDA</span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-industry">Financial Services</div>
+                        <h3>Digital transformation for a global bank</h3>
+                        <p>
+                            Overhauled legacy operations, reduced cost-to-income
+                            ratio by 18%, and launched a new digital proposition
+                            that captured 200k+ new customers.
+                        </p>
+                        <div class="case-result">📈 42% EBITDA growth in 18 months</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image" style="background: linear-gradient(135deg, #1a2f4a, #0b1a2f);">
+                        <span style="font-size: 4rem; opacity: 0.08;">🏭</span>
+                        <span class="case-badge">$340M value</span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-industry">Industrial Manufacturing</div>
+                        <h3>Portfolio optimization &amp; M&A</h3>
+                        <p>
+                            Identified divestiture opportunities, streamlined
+                            14 business units, and executed a strategic acquisition
+                            that expanded market share by 27%.
+                        </p>
+                        <div class="case-result">💰 $340M enterprise value unlocked</div>
+                    </div>
+                </div>
+
+                <div class="case-card">
+                    <div class="case-image" style="background: linear-gradient(135deg, #1a2f4a, #0b1a2f);">
+                        <span style="font-size: 4rem; opacity: 0.08;">🛒</span>
+                        <span class="case-badge">2.4x growth</span>
+                    </div>
+                    <div class="case-body">
+                        <div class="case-industry">Retail &amp; Consumer</div>
+                        <h3>Omnichannel strategy &amp; brand repositioning</h3>
+                        <p>
+                            Redesigned the customer journey, optimized pricing
+                            architecture, and rebuilt the brand identity — driving
+                            2.4× revenue growth in two years.
+                        </p>
+                        <div class="case-result">🚀 2.4× revenue growth</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 48px; text-align: center;">
+                <a href="#cta" class="btn btn-outline btn-arrow">Book a call to discuss your case</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section id="testimonials">
+        <div class="container">
+            <div class="section-header centered">
+                <span class="section-label">What our clients say</span>
+                <h2 class="section-title">
+                    Trusted by <span class="highlight">global leaders</span>
+                </h2>
+                <p class="section-subtitle">
+                    We measure our success by the success of our clients.
+                    Here’s what they have to say.
+                </p>
+            </div>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>
+                        “The team at Fatima Strategy Partners brought a level of
+                        rigor and strategic clarity that we had never experienced.
+                        They didn't just deliver a plan — they helped us execute.”
+                    </blockquote>
+                    <div class="client">
+                        <div class="avatar">AM</div>
+                        <div class="info">
+                            <div class="name">Aisha Mbeki</div>
+                            <div class="role">CFO, Pan-African Energy</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>
+                        “We engaged Fatima Strategy Partners to navigate a
+                        complex merger. Their expertise in stakeholder alignment
+                        and integration planning was instrumental to our success.”
+                    </blockquote>
+                    <div class="client">
+                        <div class="avatar">RC</div>
+                        <div class="info">
+                            <div class="name">Robert Chen</div>
+                            <div class="role">CEO, Medtronic Asia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>
+                        “Our partnership with Fatima Strategy Partners has been
+                        transformative. They challenged our thinking, elevated our
+                        strategy, and delivered results that exceeded our board's
+                        expectations.”
+                    </blockquote>
+                    <div class="client">
+                        <div class="avatar">SG</div>
+                        <div class="info">
+                            <div class="name">Sofia Gutierrez</div>
+                            <div class="role">Group Strategy Director, Novartis</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== THOUGHT LEADERSHIP ========== -->
+    <section id="insights">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Thought leadership</span>
+                <h2 class="section-title">
+                    Insights from the <span class="highlight">frontier</span>
+                </h2>
+                <p class="section-subtitle">
+                    Our latest thinking on strategy, transformation, and the
+                    forces reshaping industries.
+                </p>
+            </div>
+
+            <div class="insight-grid">
+                <div class="insight-card">
+                    <span class="insight-tag">Strategy</span>
+                    <h4>Why 2026 is the year of adaptive strategy</h4>
+                    <p>
+                        In a world of persistent volatility, static five-year plans
+                        are obsolete. We explore how leading firms are building
+                        adaptive, real-time strategy capabilities.
+                    </p>
+                    <a href="#" class="read-more">Read more →</a>
+                </div>
+
+                <div class="insight-card">
+                    <span class="insight-tag">Digital</span>
+                    <h4>AI at scale: Moving beyond the pilot</h4>
+                    <p>
+                        Most organizations struggle to deploy AI beyond proof-of-concept.
+                        We outline a framework for enterprise-wide AI adoption that
+                        delivers tangible business value.
+                    </p>
+                    <a href="#" class="read-more">Read more →</a>
+                </div>
+
+                <div class="insight-card">
+                    <span class="insight-tag">Leadership</span>
+                    <h4>The new mandate for the CEO</h4>
+                    <p>
+                        Today's CEOs must balance short-term performance with
+                        long-term resilience. We unpack the capabilities that
+                        separate high-performing leaders from the rest.
+                    </p>
+                    <a href="#" class="read-more">Read more →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CTA BANNER ========== -->
+    <section class="cta-banner" id="cta">
+        <div class="container">
+            <h2>
+                Ready to transform your <span>organization</span>?
+            </h2>
+            <p>
+                Book a confidential, no-obligation call with our senior
+                strategy team. We’ll diagnose your biggest opportunities and
+                map out a path forward.
+            </p>
+            <div class="cta-actions">
+                <a href="#" class="btn btn-primary btn-arrow">Book a Call</a>
+                <a href="#" class="btn btn-outline-light">Explore our approach</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">F</span>
+                        Fatima<span>Strategy</span>
+                    </a>
+                    <p>
+                        High-impact strategy advisory for organizations ready to
+                        lead. We combine analytical depth with bold vision to
+                        deliver enduring results.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="#">Corporate Strategy</a></li>
+                        <li><a href="#">Operational Excellence</a></li>
+                        <li><a href="#">Digital &amp; Innovation</a></li>
+                        <li><a href="#">M&amp;A Advisory</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h5>Resources</h5>
+                    <ul>
+                        <li><a href="#">Insights</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">White Papers</a></li>
+                        <li><a href="#">Events</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Fatima Strategy Partners. All rights reserved.</span>
+                <div class="socials">
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="YouTube">YouTube</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== FLOATING CTA ========== -->
+    <a href="#cta" class="floating-cta" aria-label="Book a call">
+        📞 <span>Book a Call</span>
+    </a>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- Navbar scroll ----
+            const navbar = document.getElementById('navbar');
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 40) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                lastScroll = currentScroll;
+            });
+
+            // ---- Mobile nav toggle ----
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            navToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinks.classList.toggle('open');
+            });
+
+            // Close nav on link click (mobile)
+            document.querySelectorAll('.nav-links a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navToggle.classList.remove('active');
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // ---- Smooth scroll for all anchor links ----
+            document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const navHeight = navbar.offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
+                        navHeight - 12;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ---- Intersection Observer for fade-up (optional enhancement) ----
+            const cards = document.querySelectorAll('.service-card, .case-card, .testimonial-card, .insight-card');
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }
+                    });
+                }, {
+                    threshold: 0.08,
+                    rootMargin: '0px 0px -40px 0px'
+                });
+
+                cards.forEach(function(card) {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(24px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    observer.observe(card);
+                });
+
+                // also observe hero stats
+                document.querySelectorAll('.hero-stats .stat').forEach(function(stat) {
+                    stat.style.opacity = '0';
+                    stat.style.transform = 'translateY(16px)';
+                    stat.style.transition = 'opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s';
+                    observer.observe(stat);
+                });
+            } else {
+                // fallback: show all
+                cards.forEach(function(card) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+                document.querySelectorAll('.hero-stats .stat').forEach(function(stat) {
+                    stat.style.opacity = '1';
+                    stat.style.transform = 'translateY(0)';
+                });
+            }
+
+        })();
+    </script>
+
+</body>
+</html>

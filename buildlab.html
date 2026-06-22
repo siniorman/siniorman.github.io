@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4-Day Build Lab – Build Your Brand, Community, Website & First Sale</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <style>
+        /* Theme: Senior Man Digital - Dark & High Converting */
+        :root {
+            --bg: #09090b;
+            --surface: #18181b;
+            --surface-2: #27272a;
+            --border: #3f3f46;
+            --text: #fafafa;
+            --text-muted: #a1a1aa;
+            --accent: #facc15; /* Yellow/Gold */
+            --accent-hover: #eab308;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .site-header { border-bottom: 1px solid var(--border); padding: 20px 0; text-align: center; }
+        .brand { font-size: 1.2rem; font-weight: 800; letter-spacing: 2px; color: var(--accent); }
+        .site-header p { color: var(--text-muted); font-size: 0.9rem; margin-top: 5px; }
+
+        /* Hero */
+        .hero { padding: 80px 0; text-align: center; border-bottom: 1px solid var(--border); }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero .subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 30px; }
+        .price-tag { display: inline-block; background: var(--surface); border: 1px solid var(--border); padding: 10px 20px; border-radius: 50px; font-weight: 600; margin-bottom: 30px; }
+        .cta-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .btn { padding: 15px 30px; border-radius: 8px; font-weight: 600; text-decoration: none; font-size: 1rem; transition: all 0.2s; display: inline-block; }
+        .btn-primary { background: var(--accent); color: #000; }
+        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--surface); }
+        .urgency { color: var(--accent); font-weight: 600; margin-top: 20px; }
+
+        /* Sections */
+        section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+        .section-title { text-align: center; margin-bottom: 50px; }
+        .section-title h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 10px; }
+        .section-title p { color: var(--text-muted); font-size: 1.1rem; }
+
+        /* Grids & Cards */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 30px; position: relative; }
+        .card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; }
+        .card .icon { font-size: 2rem; margin-bottom: 15px; display: block; }
+        .card .check { color: var(--success); font-weight: 600; margin-top: 15px; display: block; font-size: 0.9rem; }
+        .step-number { font-size: 3rem; font-weight: 800; color: var(--accent); opacity: 0.2; position: absolute; top: 10px; right: 20px; }
+
+        /* Lists */
+        .check-list, .cross-list { list-style: none; }
+        .check-list li, .cross-list li { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+        .check-list li::before { content: "✅"; }
+        .cross-list li::before { content: "❌"; }
+        .list-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        @media(max-width: 768px) { .list-container { grid-template-columns: 1fr; } }
+
+        /* Testimonials */
+        .testimonial { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 30px; }
+        .testimonial p { font-style: italic; margin-bottom: 15px; font-size: 1.05rem; }
+        .testimonial .author { color: var(--accent); font-weight: 600; }
+
+        /* FAQ */
+        details { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 15px; padding: 20px; }
+        summary { font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: "+"; font-size: 1.5rem; color: var(--accent); }
+        details[open] summary::after { content: "−"; }
+        details p { margin-top: 15px; color: var(--text-muted); }
+
+        /* Payment / Join */
+        .payment-box { background: var(--surface-2); border: 2px solid var(--accent); border-radius: 12px; padding: 40px; text-align: center; }
+        .payment-details { background: var(--bg); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left; display: inline-block; }
+        .payment-details p { margin: 5px 0; }
+
+        /* Footer */
+        footer { text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--accent); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<header class="site-header">
+    <div class="container">
+        <a href="index.html" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none;">
+            <img src="assets/icon.png" alt="" style="width:24px; height:24px; border-radius:6px; object-fit:cover;">
+            <span class="brand">SENIOR MAN</span>
+        </a>
+        <p>Senior Man Digital — 4-Day Build Lab</p>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <h1>Build Your Brand, Community,<br>Website & First Sale in 4 Days</h1>
+        <p class="subtitle">A guided sprint where you build real, working digital assets – no skills needed, no coding, no investment.</p>
+        <div class="price-tag">₦10,000 — One-time</div>
+        <div class="cta-group">
+            <a href="#join" class="btn btn-primary">Join the Build Lab Now →</a>
+            <a href="#what-you-build" class="btn btn-secondary">See What You Build</a>
+        </div>
+        <p class="urgency">⏳ Only 9 spots remaining. First come, first served.</p>
+    </div>
+</section>
+
+<section id="what-you-build">
+    <div class="container">
+        <div class="section-title">
+            <h2>What You Build</h2>
+            <p>4 Days. 4 Assets.</p>
+        </div>
+        <p style="text-align:center; color:var(--text-muted); margin-bottom:40px; max-width:700px; margin-left:auto; margin-right:auto;">
+            By the end of Day 4, you will have real, working assets you can use forever.
+        </p>
+        <div class="grid-4">
+            <div class="card">
+                <span class="step-number">01</span>
+                <span class="icon">📌</span>
+                <h3>Wealth Profile</h3>
+                <p>Optimized bios (WhatsApp, Instagram, X), your origin story using AI, and a live link-in-bio page.</p>
+                <span class="check">✅ Professional personal brand</span>
+            </div>
+            <div class="card">
+                <span class="step-number">02</span>
+                <span class="icon">👥</span>
+                <h3>Community</h3>
+                <p>Launch your WhatsApp group, get 30–100 members, and schedule a 7-day value calendar.</p>
+                <span class="check">✅ Your own engaged community</span>
+            </div>
+            <div class="card">
+                <span class="step-number">03</span>
+                <span class="icon">🌐</span>
+                <h3>Website</h3>
+                <p>Build a professional, mobile-optimized website using AI-powered tools. No coding. Zero cost.</p>
+                <span class="check">✅ Live website – zero coding</span>
+            </div>
+            <div class="card">
+                <span class="step-number">04</span>
+                <span class="icon">💰</span>
+                <h3>First Sale</h3>
+                <p>Create your digital offer, launch to your community, and collect your first payment.</p>
+                <span class="check">✅ Money in your pocket</span>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:40px;">
+            <a href="#join" class="btn btn-primary">Reserve Your Spot Now</a>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>What You Get</h2>
+            <p>Everything You Need To Succeed</p>
+        </div>
+        <div class="grid-2">
+            <ul class="check-list">
+                <li>Daily training (written + video)</li>
+                <li>Bio templates & AI prompts</li>
+                <li>Outreach scripts & launch messages</li>
+                <li>Website building tutorial (step-by-step)</li>
+            </ul>
+            <ul class="check-list">
+                <li>WhatsApp community support</li>
+                <li>Personal feedback from me (within 24h)</li>
+                <li>Lifetime access to all templates</li>
+                <li>Your assets – yours forever</li>
+            </ul>
+        </div>
+        <p style="text-align:center; color:var(--text-muted); margin-top:30px;">
+            No prior skills. No coding. No investment. Just your phone and 1–2 hours per day for 4 days.
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>Who This Is For</h2>
+            <p>Is This You?</p>
+        </div>
+        <div class="list-container">
+            <div>
+                <h3 style="margin-bottom:20px; color:var(--success);">✅ This Lab Is For You If…</h3>
+                <ul class="check-list">
+                    <li>You want to build online income but don't know where to start</li>
+                    <li>You have a phone and 1–2 hours per day</li>
+                    <li>You're willing to learn and take action</li>
+                    <li>You want to help others achieve their goals</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="margin-bottom:20px; color:var(--danger);">❌ This Lab Is NOT For You If…</h3>
+                <ul class="cross-list">
+                    <li>You're looking for a get-rich-quick scheme</li>
+                    <li>You're not willing to take daily action</li>
+                    <li>You want someone else to do the work for you</li>
+                    <li>You only care about yourself</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section>
+    <div class="container">
+        <div class="section-title">
+            <h2>Got Questions?</h2>
+            <p>Frequently Asked Questions</p>
+        </div>
+        <div style="max-width:800px; margin:0 auto;">
+            <details><summary>Do I need any skills?</summary><p>No. We use AI and templates. You just follow the steps. If you can copy and paste, you can do this.</p></details>
+            <details><summary>Do I need a laptop?</summary><p>A laptop is recommended, but you can use a phone with some creativity. Many participants have done it from their phones.</p></details>
+            <details><summary>How much time do I need?</summary><p>1–2 hours per day for 4 days. That is it. 4–8 hours total to build assets that last forever.</p></details>
+            <details><summary>What if I fall behind?</summary><p>The lab is self-paced. You can catch up at your own speed. You have lifetime access to all materials.</p></details>
+            <details><summary>Is this halal?</summary><p>Yes. All methods are ethical and Sharia-compliant. No interest. No gambling. No scams.</p></details>
+            <details><summary>What if I don't make a sale?</summary><p>You still have a profile, community, and website. The sale will come. I will personally help you close your first transaction.</p></details>
+            <details><summary>Can I get a refund?</summary><p>Yes. If you complete all 4 days and build nothing, I will refund your ₦10,000. No questions asked.</p></details>
+        </div>
+        <div style="text-align:center; margin-top:40px;">
+            <a href="#join" class="btn btn-primary">Join the Build Lab Now</a>
+        </div>
+    </div>
+</section>
+
+<section id="join">
+    <div class="container">
+        <div class="section-title">
+            <h2>Join Now</h2>
+            <p>Reserve Your Spot</p>
+        </div>
+        <div class="payment-box">
+            <h3>Price: ₦10,000 — One-time</h3>
+            <div class="payment-details">
+                <p><strong>💳 Payment Details</strong></p>
+                <p>Bank: Opay</p>
+                <p>Account Name: Raifu Adekunle</p>
+                <p>Account Number: 8064587657</p>
+            </div>
+            <p style="margin: 20px 0;">— OR —</p>
+            <a href="#" class="btn btn-primary" style="margin-bottom:20px;">Pay with Card via Paystack</a>
+            <p style="margin-top:20px; color:var(--text-muted);">After payment, send a screenshot to:</p>
+            <p style="font-size:1.2rem; font-weight:600; margin:10px 0;">WhatsApp: <a href="https://wa.me/2347037261934" style="color:var(--accent);">+234 703 726 1934</a></p>
+            <p style="color:var(--text-muted); font-size:0.9rem;">You will be added to the Build Lab group within 24 hours.</p>
+            <hr style="border-color:var(--border); margin:30px 0;">
+            <p class="urgency">⏳ Limited spots: Only 9 spots remaining for this cohort.</p>
+            <p style="color:var(--text-muted); margin-top:10px;">Next cohort opens in July, 20.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <h3 style="color:var(--text); margin-bottom:10px;">Ready to Build Your Future?</h3>
+        <p style="max-width:600px; margin:0 auto 20px;">Most people spend months learning and never build anything. In 4 days, you will have a brand, a community, a website, and a sale.</p>
+        <a href="#join" class="btn btn-primary">Join the Build Lab Now → ₦10,000</a>
+        <p style="margin-top:20px; font-size:0.9rem;">🔒 100% secure. Refund if you build nothing.</p>
+        <p style="margin-top:40px;">© 2026 Millionaire Club. All rights reserved. Built with faith and purpose. Ilorin, Nigeria.</p>
+        <p><a href="https://millionaireclub.name.ng">millionaireclub.name.ng</a> · <a href="index.html">🏠 View Full Website Manifesto</a></p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adunni Couture — Timeless Elegance</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ============================================
+                   CSS VARIABLES & RESET
+                ============================================ */
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e8d5a3;
+            --gold-dark: #a8873a;
+            --cream: #faf6ef;
+            --cream-dark: #f0e8dc;
+            --charcoal: #1e1e1e;
+            --charcoal-light: #2d2d2d;
+            --charcoal-lighter: #3d3d3d;
+            --white: #ffffff;
+            --off-white: #fcf9f5;
+            --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.10);
+            --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.16);
+            --radius: 16px;
+            --radius-sm: 8px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--off-white);
+            color: var(--charcoal);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================
+                   SCROLLBAR
+                ============================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        /* ============================================
+                   UTILITY
+                ============================================ */
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--charcoal-lighter);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+
+        /* ============================================
+                   NAVIGATION
+                ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.06);
+            padding: 12px 0;
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .navbar.scrolled .logo {
+            color: var(--charcoal);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            transition: var(--transition);
+            letter-spacing: 0.3px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: var(--charcoal-light);
+        }
+        .navbar.scrolled .nav-links a:hover {
+            color: var(--charcoal);
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--white) !important;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            transition: var(--transition);
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-dark);
+            transform: scale(1.03);
+            color: var(--white) !important;
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 4px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+
+        .navbar.scrolled .hamburger span {
+            background: var(--charcoal);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 380px;
+            height: 100vh;
+            background: var(--charcoal);
+            padding: 100px 40px 40px;
+            transition: var(--transition);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--gold);
+            padding-left: 8px;
+        }
+
+        .mobile-menu .nav-cta-mobile {
+            background: var(--gold);
+            color: var(--white) !important;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            border-bottom: none;
+            margin-top: 12px;
+        }
+
+        .mobile-menu .nav-cta-mobile:hover {
+            background: var(--gold-dark);
+            padding-left: 28px;
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ============================================
+                   HERO
+                ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--charcoal);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #0d0d0d 100%);
+            z-index: 0;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding-top: 80px;
+            padding-bottom: 60px;
+        }
+
+        .hero-content {
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.15);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif);
+            font-size: clamp(2.8rem, 7vw, 4.8rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 440px;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--gold);
+            color: var(--white);
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 24px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(201, 168, 76, 0.4);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--white);
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 3/4;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .hero-image-wrapper:hover img {
+            transform: scale(1.02);
+        }
+
+        .hero-floating-tag {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-floating-tag i {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+                   COLLECTIONS / PRODUCTS
+                ============================================ */
+        .products {
+            padding: 80px 0 100px;
+        }
+
+        .products-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 48px;
+            gap: 24px;
+        }
+
+        .products-header .section-subtitle {
+            margin-bottom: 0;
+        }
+
+        .collection-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 22px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: var(--white);
+            border: 1.5px solid #e5e0d8;
+            transition: var(--transition);
+            color: var(--charcoal-lighter);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--charcoal);
+            color: var(--white);
+            border-color: var(--charcoal);
+        }
+
+        .filter-btn.active {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--white);
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            group: true;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-image {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            background: var(--cream);
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.04);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--gold);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 50px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--charcoal-lighter);
+        }
+
+        .product-wishlist:hover {
+            background: var(--white);
+            color: #e74c3c;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px 22px 24px;
+        }
+
+        .product-collection {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .product-name {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 4px 0 6px;
+            line-height: 1.3;
+        }
+
+        .product-price {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .product-price .old {
+            font-weight: 400;
+            color: #aaa;
+            text-decoration: line-through;
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #25d366;
+            color: var(--white);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: scale(1.02);
+        }
+
+        .btn-detail {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: var(--cream);
+            color: var(--charcoal);
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .btn-detail:hover {
+            background: var(--cream-dark);
+        }
+
+        /* ============================================
+                   PRODUCT DETAIL MODAL
+                ============================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.95) translateY(20px);
+            transition: var(--transition);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .modal-image {
+            background: var(--cream);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            border-radius: var(--radius) 0 0 var(--radius);
+        }
+
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+
+        .modal-details {
+            padding: 36px 40px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(0, 0, 0, 0.06);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            color: var(--charcoal);
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 0.12);
+            transform: rotate(90deg);
+        }
+
+        .modal .product-collection {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .modal .product-name {
+            font-size: 1.6rem;
+            margin: 0;
+        }
+
+        .modal .product-price {
+            font-size: 1.4rem;
+        }
+
+        .modal .product-description {
+            color: var(--charcoal-lighter);
+            font-weight: 300;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Sizing Chart */
+        .sizing-section {
+            margin-top: 8px;
+            border-top: 1px solid #eee;
+            padding-top: 16px;
+        }
+
+        .sizing-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            transition: var(--transition);
+            padding: 4px 0;
+        }
+
+        .sizing-toggle:hover {
+            color: var(--gold);
+        }
+
+        .sizing-toggle i {
+            transition: var(--transition);
+        }
+
+        .sizing-toggle.open i {
+            transform: rotate(180deg);
+        }
+
+        .sizing-chart {
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            margin-top: 0;
+        }
+
+        .sizing-chart.open {
+            max-height: 400px;
+            margin-top: 14px;
+        }
+
+        .sizing-chart table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        .sizing-chart th,
+        .sizing-chart td {
+            padding: 10px 12px;
+            text-align: center;
+            border-bottom: 1px solid #f0ece6;
+        }
+
+        .sizing-chart th {
+            background: var(--cream);
+            font-weight: 600;
+            color: var(--charcoal);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sizing-chart td {
+            color: var(--charcoal-lighter);
+        }
+
+        .sizing-chart tr:hover td {
+            background: #f8f5f0;
+        }
+
+        .modal-whatsapp {
+            margin-top: 8px;
+            width: 100%;
+            padding: 14px;
+            background: #25d366;
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .modal-whatsapp:hover {
+            background: #1da851;
+            transform: scale(1.01);
+        }
+
+        .modal-position {
+            position: relative;
+        }
+
+        /* ============================================
+                   TESTIMONIALS
+                ============================================ */
+        .testimonials {
+            padding: 80px 0 100px;
+            background: var(--cream);
+        }
+
+        .testimonials .section-title {
+            text-align: center;
+        }
+
+        .testimonials .section-subtitle {
+            text-align: center;
+            margin: 0 auto 48px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 28px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--charcoal-lighter);
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--gold-dark);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        /* ============================================
+                   FOOTER
+                ============================================ */
+        .footer {
+            background: var(--charcoal);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-weight: 300;
+            max-width: 300px;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer-social a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .footer h4 {
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer ul a {
+            font-weight: 300;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .footer ul a:hover {
+            color: var(--gold);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.85rem;
+            font-weight: 300;
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                ============================================ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-image-wrapper {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .modal-content {
+                grid-template-columns: 1fr;
+            }
+            .modal-image {
+                border-radius: var(--radius) var(--radius) 0 0;
+                min-height: 280px;
+                padding: 20px;
+            }
+            .modal-image img {
+                max-height: 300px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero-title {
+                font-size: clamp(2.2rem, 8vw, 3.2rem);
+            }
+            .hero-image-wrapper {
+                max-width: 320px;
+            }
+            .hero-floating-tag {
+                bottom: 16px;
+                left: 16px;
+                padding: 8px 14px;
+                font-size: 0.75rem;
+            }
+            .products {
+                padding: 60px 0 80px;
+            }
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 20px;
+            }
+            .modal {
+                max-height: 95vh;
+                border-radius: var(--radius-sm);
+            }
+            .modal-details {
+                padding: 24px 20px 28px;
+            }
+            .modal .product-name {
+                font-size: 1.3rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .product-info {
+                padding: 14px 16px 18px;
+            }
+            .product-name {
+                font-size: 0.95rem;
+            }
+            .product-price {
+                font-size: 0.9rem;
+            }
+            .btn-whatsapp {
+                font-size: 0.75rem;
+                padding: 8px 14px;
+            }
+            .btn-detail {
+                font-size: 0.75rem;
+                padding: 8px 12px;
+            }
+            .product-actions {
+                flex-wrap: wrap;
+            }
+            .btn-whatsapp {
+                flex: 1 1 100%;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary,
+            .btn-outline {
+                width: 100%;
+                justify-content: center;
+            }
+            .modal-image {
+                min-height: 200px;
+            }
+            .modal-image img {
+                max-height: 220px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+    NAVIGATION
+    ============================================ -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <a href="#" class="logo" aria-label="Adunni Couture home">Adunni<span>.</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#collections" class="active">Collections</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="nav-cta" id="navWhatsApp">
+                        <i class="fab fa-whatsapp"></i> Order Now
+                    </a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+        <a href="#collections">Collections</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+        <a href="#" class="nav-cta-mobile" id="mobileWhatsApp">
+            <i class="fab fa-whatsapp"></i> Order on WhatsApp
+        </a>
+    </div>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- ============================================
+    HERO
+    ============================================ -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">✦ Spring / Summer 2026</div>
+                <h1 class="hero-title">
+                    Where Heritage<br />
+                    Meets <span class="highlight">Modern Grace</span>
+                </h1>
+                <p class="hero-desc">
+                    Adunni Couture redefines African elegance with contemporary
+                    silhouettes, handcrafted details, and a deep reverence for tradition.
+                </p>
+                <div class="hero-actions">
+                    <a href="#collections" class="btn-primary">
+                        <i class="fas fa-arrow-right"></i> Explore Collection
+                    </a>
+                    <a href="#" class="btn-outline" id="heroWhatsApp">
+                        <i class="fab fa-whatsapp"></i> Order Now
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-wrapper">
+                    <img
+                    src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=800&fit=crop&crop=center&q=80"
+                    alt="Adunni Couture model in elegant attire"
+                    loading="eager"
+                    />
+                    <div class="hero-floating-tag">
+                        <i class="fas fa-star"></i>
+                        <span>Handcrafted in Nigeria</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    PRODUCTS / COLLECTIONS
+    ============================================ -->
+    <section class="products" id="collections">
+        <div class="container">
+            <div class="products-header">
+                <div>
+                    <span class="section-label">✦ Our Collections</span>
+                    <h2 class="section-title">Timeless Pieces,<br />Modern Soul</h2>
+                </div>
+                <div class="collection-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="royal">Royal Heritage</button>
+                    <button class="filter-btn" data-filter="urban">Urban Luxe</button>
+                    <button class="filter-btn" data-filter="bridal">Bridal Grace</button>
+                </div>
+            </div>
+
+            <div class="product-grid" id="productGrid">
+                <!-- Products injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    TESTIMONIALS
+    ============================================ -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <span class="section-label" style="display:block; text-align:center;">✦ Love Notes</span>
+            <h2 class="section-title">What Our Clients Say</h2>
+            <p class="section-subtitle">Real stories from women who found their perfect look with Adunni.</p>
+
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "Adunni Couture gave me the most stunning dress for my sister's wedding.
+                        The craftsmanship is unparalleled — I felt like royalty."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">TO</div>
+                        <div>
+                            <div class="testimonial-name">Tolu O.</div>
+                            <div class="testimonial-role">Lagos, Nigeria</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "I've never received so many compliments! The fit was perfect,
+                        and the fabric is incredibly luxurious. Will definitely order again."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AM</div>
+                        <div>
+                            <div class="testimonial-name">Amina M.</div>
+                            <div class="testimonial-role">Abuja, Nigeria</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">
+                        "The WhatsApp ordering process was so smooth, and my dress arrived
+                        even more beautiful than the photos. Adunni is my go-to for every event."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">CE</div>
+                        <div>
+                            <div class="testimonial-name">Chidi E.</div>
+                            <div class="testimonial-role">Port Harcourt, Nigeria</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    FOOTER
+    ============================================ -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Adunni<span>.</span></a>
+                    <p>
+                        Celebrating the beauty of African fashion with contemporary
+                        elegance. Every piece is a story of heritage and artistry.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Collections</h4>
+                    <ul>
+                        <li><a href="#">Royal Heritage</a></li>
+                        <li><a href="#">Urban Luxe</a></li>
+                        <li><a href="#">Bridal Grace</a></li>
+                        <li><a href="#">Couture</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Sizing Guide</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="mailto:hello@adunnicouture.com">hello@adunnicouture.com</a></li>
+                        <li><a href="#">+234 800 123 4567</a></li>
+                        <li><a href="#">Lagos, Nigeria</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Adunni Couture. All rights reserved.</span>
+                <span>Designed with <i class="fas fa-heart" style="color:var(--gold);"></i> in Nigeria</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+    PRODUCT DETAIL MODAL
+    ============================================ -->
+    <div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-label="Product details">
+        <div class="modal modal-position">
+            <button class="modal-close" id="modalClose" aria-label="Close modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-content">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="Product detail" />
+                </div>
+                <div class="modal-details">
+                    <span class="product-collection" id="modalCollection">Collection</span>
+                    <h3 class="product-name" id="modalName">Product Name</h3>
+                    <div class="product-price" id="modalPrice">₦0.00</div>
+                    <p class="product-description" id="modalDesc">
+                        Description goes here.
+                    </p>
+
+                    <!-- Sizing Chart -->
+                    <div class="sizing-section">
+                        <button class="sizing-toggle" id="sizingToggle" aria-expanded="false">
+                            <i class="fas fa-chevron-down"></i> View Sizing Chart
+                        </button>
+                        <div class="sizing-chart" id="sizingChart">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Size</th>
+                                        <th>Bust (cm)</th>
+                                        <th>Waist (cm)</th>
+                                        <th>Hips (cm)</th>
+                                        <th>Length (cm)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>XS</td><td>82-86</td><td>64-68</td><td>88-92</td><td>140</td></tr>
+                                    <tr><td>S</td><td>86-90</td><td>68-72</td><td>92-96</td><td>142</td></tr>
+                                    <tr><td>M</td><td>90-94</td><td>72-76</td><td>96-100</td><td>144</td></tr>
+                                    <tr><td>L</td><td>94-98</td><td>76-80</td><td>100-104</td><td>146</td></tr>
+                                    <tr><td>XL</td><td>98-102</td><td>80-84</td><td>104-108</td><td>148</td></tr>
+                                </tbody>
+                            </table>
+                            <p style="font-size:0.75rem; color:#999; margin-top:10px; text-align:center;">
+                                <i class="fas fa-tape"></i> For custom sizing, please contact us on WhatsApp.
+                            </p>
+                        </div>
+                    </div>
+
+                    <a href="#" class="modal-whatsapp" id="modalWhatsApp">
+                        <i class="fab fa-whatsapp"></i> Order on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ============================================
+    JAVASCRIPT
+    ============================================ -->
+    <script>
+        // ============================================
+        // DATA
+        // ============================================
+        const products = [{
+            id: 1,
+            name: "Ireti Evening Gown",
+            collection: "royal",
+            collectionLabel: "Royal Heritage",
+            price: "₦145,000",
+            oldPrice: null,
+            badge: "New",
+            image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=600&h=800&fit=crop&crop=center&q=80",
+            description: "A stunning floor-length gown crafted from premium Ankara silk. Features a dramatic train and intricate gold embroidery inspired by Yoruba royal motifs.",
+            sizing: "True to size. Model wears size S."
+        }, {
+            id: 2,
+            name: "Adire Aso-Oke Jacket",
+            collection: "urban",
+            collectionLabel: "Urban Luxe",
+            price: "₦98,000",
+            oldPrice: "₦120,000",
+            badge: "Sale",
+            image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop&crop=center&q=80",
+            description: "A contemporary take on the classic Aso-Oke. This structured jacket features hand-dyed Adire panels and a relaxed, modern silhouette.",
+            sizing: "Oversized fit. Size down for a tailored look."
+        }, {
+            id: 3,
+            name: "Ife Bridal Gown",
+            collection: "bridal",
+            collectionLabel: "Bridal Grace",
+            price: "₦320,000",
+            oldPrice: null,
+            badge: "Bestseller",
+            image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop&crop=center&q=80",
+            description: "A breathtaking wedding gown that blends traditional lace with modern elegance. Features a fitted bodice, flowing skirt, and delicate beadwork.",
+            sizing: "True to size. Custom sizing available."
+        }, {
+            id: 4,
+            name: "Eko Two-Piece Set",
+            collection: "urban",
+            collectionLabel: "Urban Luxe",
+            price: "₦76,000",
+            oldPrice: null,
+            badge: null,
+            image: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&h=800&fit=crop&crop=center&q=80",
+            description: "A versatile two-piece set featuring a cropped top and high-waisted wide-leg trousers. Perfect for both casual and formal occasions.",
+            sizing: "True to size. Model wears size M."
+        }, {
+            id: 5,
+            name: "Olori Kaftan",
+            collection: "royal",
+            collectionLabel: "Royal Heritage",
+            price: "₦112,000",
+            oldPrice: "₦135,000",
+            badge: "Sale",
+            image: "https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600&h=800&fit=crop&crop=center&q=80",
+            description: "A regal kaftan with a modern twist. Features bold geometric patterns and a luxurious silk-cotton blend fabric that drapes effortlessly.",
+            sizing: "Relaxed fit. One size fits most."
+        }, {
+            id: 6,
+            name: "Adenike Midi Dress",
+            collection: "bridal",
+            collectionLabel: "Bridal Grace",
+            price: "₦168,000",
+            oldPrice: null,
+            badge: "New",
+            image: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=600&h=800&fit=crop&crop=center&q=80",
+            description: "A sophisticated midi dress for the modern bride-to-be. Features a flattering V-neck, puff sleeves, and a subtle A-line skirt.",
+            sizing: "True to size. Model wears size S."
+        }];
+
+        // ============================================
+        // STATE
+        // ============================================
+        let currentFilter = 'all';
+        let currentProductId = null;
+
+        // ============================================
+        // DOM REFS
+        // ============================================
+        const grid = document.getElementById('productGrid');
+        const modal = document.getElementById('productModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalImg = document.getElementById('modalImage');
+        const modalName = document.getElementById('modalName');
+        const modalCollection = document.getElementById('modalCollection');
+        const modalPrice = document.getElementById('modalPrice');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalWhatsApp = document.getElementById('modalWhatsApp');
+        const sizingToggle = document.getElementById('sizingToggle');
+        const sizingChart = document.getElementById('sizingChart');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+
+        // ============================================
+        // RENDER PRODUCTS
+        // ============================================
+        function renderProducts(filter = 'all') {
+            const filtered = filter === 'all' ?
+                products :
+                products.filter(p => p.collection === filter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                            <div style="grid-column:1/-1; text-align:center; padding:60px 0; color:var(--charcoal-lighter);">
+                                <i class="fas fa-search" style="font-size:2rem; opacity:0.3; display:block; margin-bottom:12px;"></i>
+                                No products found in this collection.
+                            </div>
+                        `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => `
+                        <div class="product-card" data-id="${p.id}" data-collection="${p.collection}">
+                            <div class="product-image">
+                                <img src="${p.image}" alt="${p.name}" loading="lazy" />
+                                ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+                                <button class="product-wishlist" aria-label="Add to wishlist">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-collection">${p.collectionLabel}</div>
+                                <h3 class="product-name">${p.name}</h3>
+                                <div class="product-price">
+                                    ${p.price}
+                                    ${p.oldPrice ? `<span class="old">${p.oldPrice}</span>` : ''}
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="btn-whatsapp" data-id="${p.id}">
+                                        <i class="fab fa-whatsapp"></i> Order
+                                    </a>
+                                    <button class="btn-detail" data-id="${p.id}">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+
+            // Attach event listeners to product cards
+            document.querySelectorAll('.product-card .btn-detail').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = parseInt(btn.dataset.id);
+                    openModal(id);
+                });
+            });
+
+            document.querySelectorAll('.product-card .btn-whatsapp').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const id = parseInt(btn.dataset.id);
+                    const product = products.find(p => p.id === id);
+                    if (product) openWhatsApp(product);
+                });
+            });
+
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const id = parseInt(card.dataset.id);
+                    openModal(id);
+                });
+            });
+
+            // Wishlist toggle
+            document.querySelectorAll('.product-wishlist').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const icon = btn.querySelector('i');
+                    icon.classList.toggle('far');
+                    icon.classList.toggle('fas');
+                    icon.style.color = icon.classList.contains('fas') ? '#e74c3c' : '';
+                });
+            });
+        }
+
+        // ============================================
+        // MODAL
+        // ============================================
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            currentProductId = id;
+
+            modalImg.src = product.image;
+            modalImg.alt = product.name;
+            modalName.textContent = product.name;
+            modalCollection.textContent = product.collectionLabel;
+            modalPrice.innerHTML = `${product.price}${product.oldPrice ? ` <span class="old">${product.oldPrice}</span>` : ''}`;
+            modalDesc.textContent = product.description;
+
+            // Set WhatsApp link
+            const msg = encodeURIComponent(
+                `Hi Adunni Couture! I'm interested in "${product.name}" (${product.collectionLabel}) — ₦${product.price.replace('₦', '').replace(',', '')}. Please let me know the availability and sizing.`
+            );
+            modalWhatsApp.href = `https://wa.me/2348001234567?text=${msg}`;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Reset sizing chart
+            sizingChart.classList.remove('open');
+            sizingToggle.classList.remove('open');
+            sizingToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Sizing toggle
+        sizingToggle.addEventListener('click', () => {
+            const isOpen = sizingChart.classList.toggle('open');
+            sizingToggle.classList.toggle('open');
+            sizingToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ============================================
+        // WHATSAPP HELPERS
+        // ============================================
+        function openWhatsApp(product) {
+            const msg = encodeURIComponent(
+                `Hi Adunni Couture! I'm interested in "${product.name}" (${product.collectionLabel}) — ₦${product.price.replace('₦', '').replace(',', '')}. Please let me know the availability and sizing.`
+            );
+            window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+        }
+
+        // Global WhatsApp buttons
+        document.getElementById('heroWhatsApp').addEventListener('click', (e) => {
+            e.preventDefault();
+            const msg = encodeURIComponent(
+                `Hi Adunni Couture! I'd love to explore your collections. Please help me find the perfect piece.`
+            );
+            window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+        });
+
+        document.getElementById('navWhatsApp').addEventListener('click', (e) => {
+            e.preventDefault();
+            const msg = encodeURIComponent(
+                `Hi Adunni Couture! I'd like to place an order. Please guide me.`
+            );
+            window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+        });
+
+        document.getElementById('mobileWhatsApp').addEventListener('click', (e) => {
+            e.preventDefault();
+            closeMobileMenu();
+            const msg = encodeURIComponent(
+                `Hi Adunni Couture! I'd like to place an order. Please guide me.`
+            );
+            setTimeout(() => {
+                window.open(`https://wa.me/2348001234567?text=${msg}`, '_blank');
+            }, 300);
+        });
+
+        // ============================================
+        // FILTERS
+        // ============================================
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderProducts(currentFilter);
+            });
+        });
+
+        // ============================================
+        // MOBILE MENU
+        // ============================================
+        function toggleMobileMenu() {
+            const isOpen = mobileMenu.classList.toggle('open');
+            mobileOverlay.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileOverlay.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', toggleMobileMenu);
+        mobileOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // ============================================
+        // NAVBAR SCROLL EFFECT
+        // ============================================
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // ============================================
+        // SMOOTH SCROLL FOR NAV LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ============================================
+        // INIT
+        // ============================================
+        renderProducts('all');
+
+        // Handle product card WhatsApp clicks via delegation for dynamic elements
+        document.addEventListener('click', (e) => {
+            const waBtn = e.target.closest('.btn-whatsapp');
+            if (waBtn && !waBtn.closest('.product-card')) {
+                // Already handled above for product cards
+            }
+        });
+
+        console.log('✨ Adunni Couture — Timeless Elegance');
+    </script>
+
+</body>
+</html>

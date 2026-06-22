@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lekki Prime Homes — Luxury Real Estate</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Flatpickr for calendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0f0e1a;
+            --navy-light: #1a1a2e;
+            --gold: #c9a84c;
+            --gold-light: #e8d5a3;
+            --gold-glow: rgba(201, 168, 76, 0.25);
+            --cream: #f5efe6;
+            --cream-dark: #e8ddd0;
+            --white: #ffffff;
+            --off-white: #faf8f5;
+            --gray: #8a8a8a;
+            --gray-light: #d4d0c8;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 40px 80px rgba(0, 0, 0, 0.25);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--navy);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .section-label::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+            margin-top: 6px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 560px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.35);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(201, 168, 76, 0.5);
+            background: #dbb95a;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
+        }
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--navy);
+            border-color: var(--white);
+        }
+
+        .btn-outline-dark {
+            background: transparent;
+            color: var(--navy);
+            border: 1.5px solid var(--navy);
+        }
+        .btn-outline-dark:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        .btn-gold:hover {
+            background: #dbb95a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(201, 168, 76, 0.4);
+        }
+
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .navbar.scrolled {
+            background: rgba(15, 14, 26, 0.92);
+            backdrop-filter: blur(16px);
+            padding: 12px 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .logo .gold {
+            color: var(--gold);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition);
+            letter-spacing: 0.02em;
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            padding: 10px 28px;
+            border-radius: 50px;
+            background: var(--gold);
+            color: var(--navy) !important;
+            font-weight: 600;
+            font-size: 0.8rem !important;
+            transition: var(--transition);
+        }
+        .nav-cta:hover {
+            background: #dbb95a;
+            transform: translateY(-1px);
+            color: var(--navy) !important;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--navy);
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg video,
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .hero-bg .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(15, 14, 26, 0.85) 0%, rgba(15, 14, 26, 0.4) 60%, rgba(15, 14, 26, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            max-width: 740px;
+            padding: 120px 0 80px;
+        }
+
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(201, 168, 76, 0.2);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.8rem, 6.5vw, 5.2rem);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 .gold {
+            color: var(--gold);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 540px;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 36px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-stats .stat h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .hero-stats .stat p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== PROPERTIES ===== */
+        .properties {
+            padding: 100px 0 80px;
+            background: var(--off-white);
+        }
+
+        .properties-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .properties-header .section-subtitle {
+            margin-bottom: 0;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 8px 24px;
+            border-radius: 50px;
+            border: 1px solid var(--gray-light);
+            background: transparent;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filter-tab:hover {
+            border-color: var(--gold);
+            color: var(--navy);
+        }
+
+        .filter-tab.active {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .property-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow);
+        }
+
+        .property-card .card-image {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .property-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .property-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .property-card .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--gold);
+            color: var(--navy);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .property-card .card-badge.sold {
+            background: var(--gray);
+            color: var(--white);
+        }
+
+        .property-card .card-body {
+            padding: 24px 28px 28px;
+        }
+
+        .property-card .card-body .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .property-card .card-body .price span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+
+        .property-card .card-body h3 {
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .property-card .card-body .location {
+            font-size: 0.85rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .property-card .card-body .features {
+            display: flex;
+            gap: 20px;
+            padding-top: 14px;
+            border-top: 1px solid #f0ede8;
+        }
+
+        .property-card .card-body .features span {
+            font-size: 0.8rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .property-card .card-body .features span strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* ===== INQUIRY SECTION ===== */
+        .inquiry {
+            padding: 100px 0;
+            background: var(--navy);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .inquiry::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .inquiry .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .inquiry-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .inquiry-content h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            margin-bottom: 16px;
+        }
+
+        .inquiry-content h2 .gold {
+            color: var(--gold);
+        }
+
+        .inquiry-content p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .inquiry-prompts {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .inquiry-prompts .prompt {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.85);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .inquiry-prompts .prompt:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(201, 168, 76, 0.3);
+        }
+
+        .inquiry-prompts .prompt .icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .inquiry-form {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(8px);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .inquiry-form h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .inquiry-form .sub {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 24px;
+        }
+
+        .inquiry-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        .inquiry-form label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 4px;
+        }
+
+        .inquiry-form input,
+        .inquiry-form select,
+        .inquiry-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--white);
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .inquiry-form input:focus,
+        .inquiry-form select:focus,
+        .inquiry-form textarea:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .inquiry-form input::placeholder,
+        .inquiry-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .inquiry-form textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .inquiry-form .btn {
+            width: 100%;
+            justify-content: center;
+            margin-top: 8px;
+            padding: 16px;
+        }
+
+        /* ===== MAP SECTION ===== */
+        .map-section {
+            padding: 80px 0;
+            background: var(--white);
+        }
+
+        .map-section .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .map-content h2 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            margin-bottom: 12px;
+        }
+
+        .map-content p {
+            color: var(--gray);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .map-content .location-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .map-content .location-list .loc-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.95rem;
+            color: var(--navy);
+        }
+
+        .map-content .location-list .loc-item .pin {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .map-container {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 400px;
+            background: var(--cream-dark);
+            position: relative;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            filter: grayscale(0.3) contrast(1.1);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 64px 0 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand .logo {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--white);
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            max-width: 300px;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--white);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .footer ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer ul a {
+            font-size: 0.85rem;
+            transition: var(--transition);
+            font-weight: 300;
+        }
+        .footer ul a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom .socials {
+            display: flex;
+            gap: 16px;
+        }
+        .footer-bottom .socials a {
+            color: rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        .footer-bottom .socials a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== MODAL (Property Detail) ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 16px;
+            right: 16px;
+            float: right;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            border: none;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 16px 16px 0 0;
+        }
+
+        .modal-close:hover {
+            background: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 8px;
+            padding: 0 0 24px;
+        }
+
+        .modal-gallery .main-img {
+            height: 320px;
+            border-radius: var(--radius) 0 0 var(--radius);
+            overflow: hidden;
+        }
+
+        .modal-gallery .main-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-gallery .thumbs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .modal-gallery .thumbs img {
+            height: 156px;
+            object-fit: cover;
+            border-radius: 0 var(--radius) 0 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-gallery .thumbs img:hover {
+            opacity: 0.8;
+        }
+
+        .modal-body {
+            padding: 0 36px 36px;
+        }
+
+        .modal-body .modal-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .modal-body .modal-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--gray);
+        }
+
+        .modal-body .modal-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .modal-body .modal-location {
+            color: var(--gray);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 16px;
+        }
+
+        .modal-body .modal-features {
+            display: flex;
+            gap: 28px;
+            padding: 16px 0 20px;
+            border-top: 1px solid var(--cream-dark);
+            border-bottom: 1px solid var(--cream-dark);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .modal-body .modal-features .mf {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .modal-body .modal-features .mf strong {
+            color: var(--navy);
+        }
+
+        .modal-body .modal-description {
+            color: var(--gray);
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .modal-body .modal-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== BOOKING MODAL (Step flow) ===== */
+        .booking-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(14px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .booking-overlay.open {
+            display: flex;
+        }
+
+        .booking-modal {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            max-width: 580px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .booking-modal .bm-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .booking-modal .bm-close:hover {
+            color: var(--navy);
+            transform: rotate(90deg);
+        }
+
+        .booking-modal .step-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .booking-modal .step-indicators .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .booking-modal .step-indicators .dot.active {
+            background: var(--gold);
+            width: 32px;
+            border-radius: 4px;
+        }
+
+        .booking-modal .step-indicators .dot.done {
+            background: var(--gold);
+            opacity: 0.4;
+        }
+
+        .booking-modal h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .booking-modal .step-sub {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .booking-modal .form-group {
+            margin-bottom: 18px;
+        }
+
+        .booking-modal .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gray);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .booking-modal .form-group input,
+        .booking-modal .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px solid var(--gray-light);
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            outline: none;
+            background: var(--white);
+        }
+
+        .booking-modal .form-group input:focus,
+        .booking-modal .form-group select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-glow);
+        }
+
+        .booking-modal .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .booking-modal .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .booking-modal .btn-group .btn {
+            flex: 1;
+            justify-content: center;
+        }
+
+        .booking-modal .btn-group .btn-secondary {
+            background: var(--cream-dark);
+            color: var(--navy);
+        }
+
+        .booking-modal .btn-group .btn-secondary:hover {
+            background: #d4c8b8;
+        }
+
+        .booking-modal .confirmation {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .booking-modal .confirmation .check {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .booking-modal .confirmation h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+        }
+
+        .booking-modal .confirmation p {
+            color: var(--gray);
+            font-weight: 300;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .inquiry-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .map-section .container {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .map-container {
+                height: 320px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--navy);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content {
+                padding: 100px 0 60px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .properties-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .modal-gallery {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .modal-gallery .main-img {
+                height: 220px;
+                border-radius: var(--radius) var(--radius) 0 0;
+            }
+
+            .modal-gallery .thumbs {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+
+            .modal-gallery .thumbs img {
+                height: 100px;
+                border-radius: 0;
+            }
+
+            .modal-body {
+                padding: 0 20px 24px;
+            }
+
+            .booking-modal {
+                padding: 28px 20px;
+            }
+
+            .booking-modal .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.4rem;
+            }
+
+            .inquiry-form {
+                padding: 24px;
+            }
+
+            .modal-body .modal-features {
+                gap: 16px;
+            }
+
+            .filter-tabs {
+                gap: 4px;
+            }
+
+            .filter-tab {
+                padding: 6px 14px;
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-icon">L</span>
+                <span>Lekki <span class="gold">Prime</span></span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#inquiry">Inquire</a></li>
+                <li><a href="#map">Location</a></li>
+                <li><a href="#properties" class="nav-cta" id="navBookCta">Book Inspection</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1600&q=80" alt="Luxury home" />
+            <div class="overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">✦ Luxury Living Redefined</div>
+                <h1>
+                    Where <span class="gold">Lagos</span><br />
+                    Meets <span class="gold">Elegance</span>
+                </h1>
+                <p>
+                    Discover an exclusive collection of curated estates in Lekki Phase 1.
+                    Each residence is a masterpiece of design, comfort, and prestige.
+                </p>
+                <div class="hero-actions">
+                    <a href="#properties" class="btn btn-primary">Explore Estates →</a>
+                    <a href="#inquiry" class="btn btn-outline">Inquire Now</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h4>12</h4>
+                        <p>Luxury Estates</p>
+                    </div>
+                    <div class="stat">
+                        <h4>4.9 ★</h4>
+                        <p>Client Rating</p>
+                    </div>
+                    <div class="stat">
+                        <h4>100%</h4>
+                        <p>Privacy Guaranteed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROPERTIES ===== -->
+    <section class="properties" id="properties">
+        <div class="container">
+            <div class="properties-header">
+                <div>
+                    <span class="section-label">Portfolio</span>
+                    <h2 class="section-title">Our Signature <span style="color:var(--gold);">Estates</span></h2>
+                    <p class="section-subtitle">Handpicked residences that define the art of luxury living in Lekki.</p>
+                </div>
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="filter-tab active" data-filter="all">All</button>
+                    <button class="filter-tab" data-filter="penthouse">Penthouses</button>
+                    <button class="filter-tab" data-filter="villa">Villas</button>
+                    <button class="filter-tab" data-filter="apartment">Apartments</button>
+                </div>
+            </div>
+
+            <div class="property-grid" id="propertyGrid">
+                <!-- Cards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INQUIRY ===== -->
+    <section class="inquiry" id="inquiry">
+        <div class="container">
+            <div class="inquiry-grid">
+                <div class="inquiry-content">
+                    <span class="section-label" style="color:var(--gold-light);">Get Started</span>
+                    <h2>Your Dream Home <br /><span class="gold">Awaits</span></h2>
+                    <p>
+                        Whether you're searching for a serene villa, a sky-high penthouse,
+                        or a chic apartment — our team is here to guide you every step of the way.
+                    </p>
+                    <div class="inquiry-prompts">
+                        <div class="prompt">
+                            <span class="icon">🏡</span>
+                            <span>“I want to view properties with ocean views.”</span>
+                        </div>
+                        <div class="prompt">
+                            <span class="icon">📐</span>
+                            <span>“I need a minimum of 4 bedrooms and a study.”</span>
+                        </div>
+                        <div class="prompt">
+                            <span class="icon">🔑</span>
+                            <span>“I'm interested in off-plan investment opportunities.”</span>
+                        </div>
+                        <div class="prompt">
+                            <span class="icon">📅</span>
+                            <span>“I'd like to schedule a private tour this weekend.”</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="inquiry-form">
+                    <h4>Speak with a Curator</h4>
+                    <p class="sub">Fill in your details and we'll connect you with a property specialist.</p>
+                    <form id="inquiryForm">
+                        <div class="form-group">
+                            <label for="inqName">Full Name</label>
+                            <input type="text" id="inqName" placeholder="Your name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="inqEmail">Email Address</label>
+                            <input type="email" id="inqEmail" placeholder="you@example.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="inqPhone">Phone</label>
+                            <input type="tel" id="inqPhone" placeholder="+234 800 000 0000" />
+                        </div>
+                        <div class="form-group">
+                            <label for="inqMessage">Your Inquiry</label>
+                            <textarea id="inqMessage" placeholder="Tell us what you're looking for…"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gold">Send Inquiry →</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAP SECTION ===== -->
+    <section class="map-section" id="map">
+        <div class="container">
+            <div class="map-content">
+                <span class="section-label">Location</span>
+                <h2>Lekki Phase 1 — <br /><span style="color:var(--gold);">The Heart of Luxury</span></h2>
+                <p>
+                    Our estates are strategically positioned in the most coveted neighborhoods of Lekki,
+                    offering seamless access to business hubs, fine dining, and the Atlantic coastline.
+                </p>
+                <div class="location-list">
+                    <div class="loc-item"><span class="pin">📍</span> Elegushi Beach Road</div>
+                    <div class="loc-item"><span class="pin">📍</span> Akin Adesola Street, VI</div>
+                    <div class="loc-item"><span class="pin">📍</span> Admiralty Way, Lekki Phase 1</div>
+                    <div class="loc-item"><span class="pin">📍</span> Chevron Drive, Lekki</div>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31721.597767665432!2d3.425037377608969!3d6.439036057460991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf4bdcd9690e5%3A0x7c509b5fa7236e0!2sLekki%20Phase%201%2C%20Lagos!5e0!3m2!1sen!2sng!4v1700000000000"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="Lekki Phase 1 Map"
+            ></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="logo-icon">L</span>
+                    <span>Lekki <span class="gold">Prime</span></span>
+                </a>
+                <p>
+                    Redefining luxury living in Lagos. Each property is a testament
+                    to timeless elegance and modern comfort.
+                </p>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#properties">Estates</a></li>
+                    <li><a href="#inquiry">Inquire</a></li>
+                    <li><a href="#map">Location</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+                    <li><a href="mailto:hello@lekkiprime.com">hello@lekkiprime.com</a></li>
+                    <li>Lekki Phase 1, Lagos</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Lekki Prime Homes. All rights reserved.</span>
+            <div class="socials">
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="LinkedIn">🔗</a>
+                <a href="#" aria-label="YouTube">▶</a>
+                <a href="#" aria-label="X">🐦</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== PROPERTY DETAIL MODAL ===== -->
+<div class="modal-overlay" id="propertyModal">
+    <div class="modal">
+        <button class="modal-close" id="modalClose">✕</button>
+        <div class="modal-gallery">
+            <div class="main-img"><img id="modalMainImg" src="" alt="Property" /></div>
+            <div class="thumbs" id="modalThumbs"></div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-price" id="modalPrice">₦0 <span></span></div>
+            <h3 class="modal-title" id="modalTitle">Property Name</h3>
+            <div class="modal-location" id="modalLocation">📍 Location</div>
+            <div class="modal-features" id="modalFeatures"></div>
+            <p class="modal-description" id="modalDescription">Description</p>
+            <div class="modal-actions">
+                <button class="btn btn-gold" id="modalBookBtn">📅 Book Inspection</button>
+                <button class="btn btn-outline-dark" id="modalInquireBtn">✉️ Inquire</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== BOOKING MODAL ===== -->
+<div class="booking-overlay" id="bookingModal">
+    <div class="booking-modal">
+        <button class="bm-close" id="bookingClose">✕</button>
+        <div class="step-indicators" id="stepDots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+
+        <!-- Step 1: Property -->
+        <div class="booking-step" id="step1">
+            <h3>Select a Property</h3>
+            <p class="step-sub">Choose the estate you'd like to inspect.</p>
+            <div class="form-group">
+                <label for="bookProperty">Property</label>
+                <select id="bookProperty"></select>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-gold" id="step1Next">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Date & Time -->
+        <div class="booking-step" id="step2" style="display:none;">
+            <h3>Pick a Date & Time</h3>
+            <p class="step-sub">Select your preferred inspection slot.</p>
+            <div class="form-group">
+                <label for="bookDate">Date</label>
+                <input type="text" id="bookDate" placeholder="Select date…" />
+            </div>
+            <div class="form-group">
+                <label for="bookTime">Time</label>
+                <select id="bookTime">
+                    <option value="09:00">09:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="14:00">02:00 PM</option>
+                    <option value="15:00">03:00 PM</option>
+                    <option value="16:00">04:00 PM</option>
+                    <option value="17:00">05:00 PM</option>
+                </select>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="step2Back">← Back</button>
+                <button class="btn btn-gold" id="step2Next">Next →</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Contact -->
+        <div class="booking-step" id="step3" style="display:none;">
+            <h3>Your Details</h3>
+            <p class="step-sub">We'll confirm your inspection via email or phone.</p>
+            <div class="form-group">
+                <label for="bookName">Full Name</label>
+                <input type="text" id="bookName" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+                <label for="bookEmail">Email</label>
+                <input type="email" id="bookEmail" placeholder="you@example.com" required />
+            </div>
+            <div class="form-group">
+                <label for="bookPhone">Phone</label>
+                <input type="tel" id="bookPhone" placeholder="+234 800 000 0000" />
+            </div>
+            <div class="form-group">
+                <label for="bookNotes">Notes (optional)</label>
+                <input type="text" id="bookNotes" placeholder="Any special requests…" />
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-secondary" id="step3Back">← Back</button>
+                <button class="btn btn-gold" id="step3Next">Confirm Inspection →</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Confirmation -->
+        <div class="booking-step" id="step4" style="display:none;">
+            <div class="confirmation">
+                <span class="check">✅</span>
+                <h3>Inspection Confirmed!</h3>
+                <p>
+                    We've received your request. A property curator will reach out
+                    within 24 hours to finalize your booking.
+                </p>
+                <br />
+                <button class="btn btn-gold" id="bookingDone">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    (function() {
+        'use strict';
+
+        // ===== DATA =====
+        const properties = [{
+            id: 1,
+            title: 'The Golden Crescent',
+            location: 'Admiralty Way, Lekki Phase 1',
+            price: '₦850,000,000',
+            priceLabel: 'negotiable',
+            type: 'villa',
+            bedrooms: 5,
+            bathrooms: 6,
+            sqft: '4,200',
+            description: 'An architectural masterpiece with panoramic ocean views. Features a private infinity pool, smart home automation, and a rooftop terrace with a bar.',
+            image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+                'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+                'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80'
+            ],
+            features: ['Private Pool', 'Smart Home', 'Rooftop Bar', 'Ocean View', '24/7 Security']
+        }, {
+            id: 2,
+            title: 'The Sky Penthouse',
+            location: 'Akin Adesola Street, VI',
+            price: '₦1,200,000,000',
+            priceLabel: 'exclusive',
+            type: 'penthouse',
+            bedrooms: 4,
+            bathrooms: 4.5,
+            sqft: '3,800',
+            description: 'A two-story penthouse with floor-to-ceiling glass walls, a private elevator, and a wraparound balcony with 270° views of the Lagos skyline.',
+            image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+                'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+                'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+                'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80'
+            ],
+            features: ['Private Elevator', 'Skyline View', 'Wraparound Balcony', 'Smart Glass', 'Concierge']
+        }, {
+            id: 3,
+            title: 'The Waterfront Villa',
+            location: 'Elegushi Beach Road, Lekki',
+            price: '₦720,000,000',
+            priceLabel: 'negotiable',
+            type: 'villa',
+            bedrooms: 4,
+            bathrooms: 4,
+            sqft: '3,500',
+            description: 'A serene beachfront villa with direct access to the Atlantic. Designed with natural stone, a private jetty, and a lush tropical garden.',
+            image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80',
+                'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+                'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80'
+            ],
+            features: ['Beachfront', 'Private Jetty', 'Tropical Garden', 'Infinity Pool', 'Staff Quarters']
+        }, {
+            id: 4,
+            title: 'The Glass Tower',
+            location: 'Chevron Drive, Lekki',
+            price: '₦980,000,000',
+            priceLabel: 'exclusive',
+            type: 'penthouse',
+            bedrooms: 3,
+            bathrooms: 3.5,
+            sqft: '2,900',
+            description: 'A contemporary penthouse in the heart of Lekki’s business district. Features a glass-enclosed living room, a wine cellar, and a private cinema.',
+            image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
+                'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+                'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80'
+            ],
+            features: ['Private Cinema', 'Wine Cellar', 'Glass Living Room', 'Gym', 'Panoramic Views']
+        }, {
+            id: 5,
+            title: 'The Botanical Residence',
+            location: 'Admiralty Way, Lekki Phase 1',
+            price: '₦650,000,000',
+            priceLabel: 'negotiable',
+            type: 'apartment',
+            bedrooms: 3,
+            bathrooms: 3,
+            sqft: '2,400',
+            description: 'A garden-inspired apartment with a private courtyard, floor-to-ceiling windows, and curated interiors by a renowned Lagos-based designer.',
+            image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80',
+                'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80',
+                'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80',
+                'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80'
+            ],
+            features: ['Private Courtyard', 'Designer Interiors', 'Green Roof', 'Smart Home', '24/7 Security']
+        }, {
+            id: 6,
+            title: 'The Oceanic Estate',
+            location: 'Elegushi Beach Road, Lekki',
+            price: '₦1,500,000,000',
+            priceLabel: 'exclusive',
+            type: 'villa',
+            bedrooms: 6,
+            bathrooms: 7,
+            sqft: '6,200',
+            description: 'A palatial estate on the edge of the Atlantic. With a private helipad, a spa, and a 25-meter pool, this is the pinnacle of coastal luxury.',
+            image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80',
+                'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&q=80',
+                'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+                'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80'
+            ],
+            features: ['Helipad', 'Spa & Sauna', '25m Pool', 'Beachfront', 'Staff Quarters', 'Generator']
+        }];
+
+        // ===== DOM REFS =====
+        const grid = document.getElementById('propertyGrid');
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const modal = document.getElementById('propertyModal');
+        const modalClose = document.getElementById('modalClose');
+        const bookingModal = document.getElementById('bookingModal');
+        const bookingClose = document.getElementById('bookingClose');
+        const navBookCta = document.getElementById('navBookCta');
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        // ===== RENDER PROPERTIES =====
+        function renderProperties(filter = 'all') {
+            const filtered = filter === 'all' ? properties : properties.filter(p => p.type === filter);
+            grid.innerHTML = '';
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.dataset.id = p.id;
+                card.innerHTML = `
+              <div class="card-image">
+                <img src="${p.image}" alt="${p.title}" loading="lazy" />
+                <span class="card-badge">${p.type.charAt(0).toUpperCase() + p.type.slice(1)}</span>
+              </div>
+              <div class="card-body">
+                <div class="price">${p.price} <span>${p.priceLabel}</span></div>
+                <h3>${p.title}</h3>
+                <div class="location">📍 ${p.location}</div>
+                <div class="features">
+                  <span>🛏 <strong>${p.bedrooms}</strong></span>
+                  <span>🛁 <strong>${p.bathrooms}</strong></span>
+                  <span>📐 <strong>${p.sqft}</strong> ft²</span>
+                </div>
+              </div>
+            `;
+                card.addEventListener('click', () => openPropertyModal(p.id));
+                grid.appendChild(card);
+            });
+        }
+
+        // ===== FILTER =====
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                renderProperties(this.dataset.filter);
+            });
+        });
+
+        // ===== PROPERTY MODAL =====
+        let currentProperty = null;
+
+        function openPropertyModal(id) {
+            const p = properties.find(prop => prop.id === id);
+            if (!p) return;
+            currentProperty = p;
+
+            document.getElementById('modalMainImg').src = p.images[0] || p.image;
+            document.getElementById('modalPrice').innerHTML = `${p.price} <span>${p.priceLabel}</span>`;
+            document.getElementById('modalTitle').textContent = p.title;
+            document.getElementById('modalLocation').textContent = `📍 ${p.location}`;
+            document.getElementById('modalDescription').textContent = p.description;
+
+            const featContainer = document.getElementById('modalFeatures');
+            featContainer.innerHTML = `
+            <div class="mf">🛏 <strong>${p.bedrooms}</strong> Beds</div>
+            <div class="mf">🛁 <strong>${p.bathrooms}</strong> Baths</div>
+            <div class="mf">📐 <strong>${p.sqft}</strong> ft²</div>
+            ${p.features.map(f => `<div class="mf">✦ ${f}</div>`).join('')}
+          `;
+
+            const thumbs = document.getElementById('modalThumbs');
+            thumbs.innerHTML = '';
+            p.images.forEach((img, idx) => {
+                const thumb = document.createElement('img');
+                thumb.src = img;
+                thumb.alt = `${p.title} ${idx + 1}`;
+                thumb.addEventListener('click', () => {
+                    document.getElementById('modalMainImg').src = img;
+                });
+                thumbs.appendChild(thumb);
+            });
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePropertyModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        modalClose.addEventListener('click', closePropertyModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) closePropertyModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePropertyModal();
+                closeBookingModal();
+            }
+        });
+
+        // ===== BOOKING MODAL =====
+        let currentStep = 1;
+        let flatpickrInstance = null;
+
+        function openBookingModal(propertyId) {
+            const select = document.getElementById('bookProperty');
+            select.innerHTML = '';
+            properties.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.textContent = `${p.title} — ${p.location}`;
+                if (p.id === propertyId) opt.selected = true;
+                select.appendChild(opt);
+            });
+
+            currentStep = 1;
+            showStep(1);
+            bookingModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+
+            // Init flatpickr
+            if (flatpickrInstance) flatpickrInstance.destroy();
+            flatpickrInstance = flatpickr('#bookDate', {
+                minDate: 'today',
+                dateFormat: 'd M Y',
+                disable: [
+                    function(date) {
+                        // disable weekends if desired
+                        return date.getDay() === 0 || date.getDay() === 6;
+                    }
+                ],
+                locale: {
+                    firstDayOfWeek: 1
+                }
+            });
+        }
+
+        function closeBookingModal() {
+            bookingModal.classList.remove('open');
+            document.body.style.overflow = '';
+            if (flatpickrInstance) {
+                flatpickrInstance.destroy();
+                flatpickrInstance = null;
+            }
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.booking-step').forEach(el => el.style.display = 'none');
+            document.getElementById(`step${step}`).style.display = 'block';
+
+            const dots = document.querySelectorAll('#stepDots .dot');
+            dots.forEach((dot, i) => {
+                dot.className = 'dot';
+                if (i + 1 === step) dot.classList.add('active');
+                else if (i + 1 < step) dot.classList.add('done');
+            });
+        }
+
+        bookingClose.addEventListener('click', closeBookingModal);
+        bookingModal.addEventListener('click', function(e) {
+            if (e.target === this) closeBookingModal();
+        });
+
+        // Step navigation
+        document.getElementById('step1Next').addEventListener('click', function() {
+            currentStep = 2;
+            showStep(2);
+        });
+
+        document.getElementById('step2Back').addEventListener('click', function() {
+            currentStep = 1;
+            showStep(1);
+        });
+
+        document.getElementById('step2Next').addEventListener('click', function() {
+            const date = document.getElementById('bookDate').value;
+            if (!date) {
+                alert('Please select a date.');
+                return;
+            }
+            currentStep = 3;
+            showStep(3);
+        });
+
+        document.getElementById('step3Back').addEventListener('click', function() {
+            currentStep = 2;
+            showStep(2);
+        });
+
+        document.getElementById('step3Next').addEventListener('click', function() {
+            const name = document.getElementById('bookName').value.trim();
+            const email = document.getElementById('bookEmail').value.trim();
+            if (!name || !email) {
+                alert('Please fill in your name and email.');
+                return;
+            }
+            currentStep = 4;
+            showStep(4);
+        });
+
+        document.getElementById('bookingDone').addEventListener('click', function() {
+            closeBookingModal();
+            // reset to step 1 for next open
+            currentStep = 1;
+            showStep(1);
+        });
+
+        // ===== NAV BOOK CTA =====
+        navBookCta.addEventListener('click', function(e) {
+            e.preventDefault();
+            // close mobile nav if open
+            navLinks.classList.remove('open');
+            if (properties.length) {
+                openBookingModal(properties[0].id);
+            }
+        });
+
+        // ===== MODAL BOOK BTN =====
+        document.getElementById('modalBookBtn').addEventListener('click', function() {
+            if (currentProperty) {
+                closePropertyModal();
+                setTimeout(() => openBookingModal(currentProperty.id), 300);
+            }
+        });
+
+        document.getElementById('modalInquireBtn').addEventListener('click', function() {
+            closePropertyModal();
+            document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // ===== INQUIRY FORM =====
+        document.getElementById('inquiryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('inqName').value.trim();
+            if (!name) {
+                alert('Please enter your name.');
+                return;
+            }
+            alert('Thank you! A property curator will reach out within 24 hours.');
+            this.reset();
+        });
+
+        // ===== HAMBURGER =====
+        hamburger.addEventListener('click', function() {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close nav on link click (mobile)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ===== SCROLL NAV =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ===== INIT =====
+        renderProperties('all');
+
+        // Expose booking for inline use
+        window.openBookingModal = openBookingModal;
+
+        console.log('🏡 Lekki Prime Homes — Luxury Real Estate Showcase');
+    })();
+</script>
+
+</body>
+</html>
