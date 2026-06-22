@@ -1,0 +1,274 @@
+/* ==========================================================================
+   SENIOR MAN — design tokens
+   Palette: near-black ledger background, warm gold for primary action,
+   muted emerald reserved only for the "ethical accelerators" track so it
+   reads as a distinct lane rather than the main funnel.
+   Type: Space Grotesk (display) / Inter (body) / IBM Plex Mono (ledger data,
+   eyebrows, numerals) — the mono face is the signature: every number and
+   label on the page reads like a line in a ledger.
+   ========================================================================== */
+
+:root {
+  --bg: #0A0E17;
+  --bg-raised: #10151F;
+  --bg-band: #0D1220;
+  --border: #1E2733;
+  --border-soft: #2A3441;
+  --white: #FFFFFF;
+  --muted: #9CA3AF;
+  --muted-dim: #6B7280;
+  --gold: #D4A65A;
+  --gold-soft: #E8C994;
+  --gold-dim: rgba(212, 166, 90, 0.14);
+  --emerald: #34D399;
+  --emerald-dim: rgba(52, 211, 153, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; color-scheme: dark; }
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--white);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+.font-mono { font-family: 'IBM Plex Mono', monospace; }
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--gold);
+}
+
+.eyebrow-emerald { color: var(--emerald); }
+
+/* focus ring — visible everywhere, never suppressed */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Buttons                                                                 */
+/* ---------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.6rem;
+  border-radius: 0.5rem;
+  transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease, border-color 200ms ease;
+  cursor: pointer;
+  white-space: normal;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  color: #0A0E17;
+  border: 1px solid var(--gold);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 28px -8px rgba(212,166,90,0.45); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--gold-soft);
+  border: 1px solid var(--border-soft);
+}
+.btn-outline:hover { transform: translateY(-2px); border-color: var(--gold); background: var(--gold-dim); }
+
+.btn-emerald {
+  background: transparent;
+  color: var(--emerald);
+  border: 1px solid rgba(52,211,153,0.4);
+}
+.btn-emerald:hover { transform: translateY(-2px); background: var(--emerald-dim); border-color: var(--emerald); }
+
+.btn-ghost {
+  background: var(--bg-raised);
+  color: var(--white);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { transform: translateY(-2px); border-color: var(--border-soft); background: #141B29; }
+
+/* ---------------------------------------------------------------------- */
+/* Cards                                                                   */
+/* ---------------------------------------------------------------------- */
+
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-soft);
+  box-shadow: 0 16px 32px -16px rgba(0,0,0,0.6);
+}
+
+.card-emerald:hover { border-color: rgba(52,211,153,0.45); box-shadow: 0 16px 32px -16px rgba(52,211,153,0.15); }
+.card-gold:hover { border-color: rgba(212,166,90,0.45); box-shadow: 0 16px 32px -16px rgba(212,166,90,0.15); }
+
+/* ---------------------------------------------------------------------- */
+/* Ledger ticker — signature element                                      */
+/* ---------------------------------------------------------------------- */
+
+.ledger-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-band);
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.ledger-track {
+  display: inline-flex;
+  animation: ledger-scroll 32s linear infinite;
+}
+
+.ledger-track span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 0.85rem 2rem;
+  border-right: 1px solid var(--border);
+}
+
+.ledger-track span b { color: var(--gold-soft); font-weight: 500; }
+
+@keyframes ledger-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ledger-track { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* ---------------------------------------------------------------------- */
+/* Divider with centered label, mirrors the "─── LABEL ───" brief styling */
+/* ---------------------------------------------------------------------- */
+
+.divider-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--muted);
+}
+.divider-label::before,
+.divider-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border-soft);
+}
+
+/* ---------------------------------------------------------------------- */
+/* Launchpad (links page) rows                                            */
+/* ---------------------------------------------------------------------- */
+
+.ledger-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  padding: 0.95rem 1.1rem;
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+.ledger-row:hover {
+  transform: translateX(4px);
+  border-color: var(--border-soft);
+  background: #141B29;
+}
+.ledger-row .idx {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted-dim);
+  min-width: 1.6rem;
+}
+.ledger-row .arrow {
+  margin-left: auto;
+  color: var(--muted-dim);
+  transition: transform 200ms ease, color 200ms ease;
+}
+.ledger-row:hover .arrow { transform: translateX(3px); color: var(--gold-soft); }
+
+/* ---------------------------------------------------------------------- */
+/* Social handle row                                                       */
+/* ---------------------------------------------------------------------- */
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.social-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.65rem;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  text-decoration: none;
+  transition: transform 200ms ease, border-color 200ms ease, color 200ms ease, background 200ms ease;
+}
+.social-badge:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  color: var(--gold-soft);
+  background: #141B29;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Form                                                                    */
+/* ---------------------------------------------------------------------- */
+
+.field-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field-input {
+  width: 100%;
+  background: #0D1320;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.75rem 0.9rem;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+.field-input::placeholder { color: var(--muted-dim); }
+.field-input:focus { border-color: var(--gold); background: #0F1626; outline: none; }
